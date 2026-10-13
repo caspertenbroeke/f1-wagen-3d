@@ -69,6 +69,7 @@ ol.steps li{margin:0 0 10px}
 <body>
 <div class="wrap">
 <header>
+  <button id="themeBtn" type="button" style="float:right;margin-top:6px">Licht / donker</button>
   <h1>Cartoon F1-wagen</h1>
   <p>Dikke ronde romp, stompe neus, een grote helm en vette wielen. Een kokerframe in kruisvorm draagt alles op de draaipaal; de vorm eromheen is betonstaal van 6 mm. De staven zijn in één vloeiende bocht gebogen, het gaas maakt de rest rond. Het gele bolletje is het zwaartepunt.</p>
   <span class="dims" id="dims">…</span>
@@ -383,6 +384,12 @@ tog('skinBtn',on=>{showSkin=on;updateSkins();});
 tog('weldBtn',on=>{showWelds=on;updateBars();});
 updateBars();updateSkins();updateCoM();resize();place();
 })();
+</script>
+<script>
+(function(){const r=document.documentElement,b=document.getElementById('themeBtn');
+const dark=()=>r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+try{const t=localStorage.getItem('f1theme');if(t)r.dataset.theme=t;}catch(e){}
+b.addEventListener('click',()=>{const t=dark()?'light':'dark';r.dataset.theme=t;try{localStorage.setItem('f1theme',t);}catch(e){}});})();
 </script>
 </body>
 </html>
